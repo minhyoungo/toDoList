@@ -6,12 +6,13 @@ function getWeather(lat, lng) {
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`
   )
     .then(function (response) {
-      return console.log(response.json());
+      return response.json();
     })
+
     .then(function (json) {
-      const temprature = json.temp;
+      const temperature = json.main.temp;
       const place = json.name;
-      weather.innerText = `${temprature} @ ${place}`;
+      weather.innerText = `${Math.floor(temperature - 273)} @${place}`;
     });
 }
 
